@@ -1,0 +1,20 @@
+<h2>ユーザーネーム</h2>
+<p><%= @user.name %></p>
+
+<% if @user.id == @current_user.id %>
+    <h2>メールアドレス</h2>
+    <p><%= @user.email %></p>
+    <h2>パスワード</h2>
+    <p><%= @user.password %></p>
+    <%= link_to("編集","/users/#{@user.id}/edit") %>
+    <%= link_to("削除","/users/#{@user.id}/destroy") %>
+<% end %>
+
+<p><%= link_to("投稿","/users/#{@user.id}")%>
+<%= link_to("いいね","/users/#{@user.id}/likes")%></p>
+
+<% @likes.each do |like| %>
+    <% post = Post.find_by(id: like.post_id) %>
+    <p><%= post.user.name %></p>
+    <h3><%= post.content %></h3>
+<% end %>

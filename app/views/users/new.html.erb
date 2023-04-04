@@ -1,0 +1,9 @@
+<%= form_tag("/users/create") do %>
+    <h2>ユーザーネーム</h2>
+    <p><input name="name" value="<%= params[:name] %>"></p>
+    <h2>メールアドレス</h2>
+    <p><input name="email" value="<%= params[:email] %>"></p>
+    <h2>パスワード</h2>
+    <p><input type="password" name="password" value="<%= @password %>"></p>
+    <input type="submit" value="作成">
+<%end%>

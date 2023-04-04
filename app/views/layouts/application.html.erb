@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SnsApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if @current_user %>
+      <h2>
+      <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+      <%= link_to("投稿一覧", "/posts/index") %>
+      <%= link_to("新規投稿", "/posts/new") %>
+      <%= link_to("ユーザー一覧", "/users/index") %>
+      <%= link_to("ログアウト", "/logout") %>
+      </h2>
+    <% else %>
+      <h2>
+      <%= link_to("SNS App", "/") %>
+      <%= link_to("SNS Appとは", "/about") %>
+      <%= link_to("ログイン", "/login") %>
+      <%= link_to("新規登録", "/signup") %>
+      </h2>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
